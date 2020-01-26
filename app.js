@@ -3,9 +3,12 @@
 
 var inquirer = require ("inquirer"); 
 var fs = require ("fs"); 
+var Manager = require ("./lib/Manager");
+var Intern = require ("./lib/Intern"); 
+var Engineer = require ("./lib/Engineer"); 
 
 nextID = 0; 
-addNewTeamMember = true; 
+teamList = []; 
 
 function getNewTeamMember () {
    inquirer
@@ -96,7 +99,49 @@ function getNewTeamMember () {
    ])
    .then(function(response) {
 
-      console.log(response);
+      //console.log(response);
+
+      nextID++; 
+      switch (response.role){
+      case 'Manager':
+         var myObj = new Manager 
+            (response.name, 
+            nextID, 
+            response.email, 
+            response.profile_image, 
+            response.github_user_id, 
+            response.role); 
+         break;
+      case 'Engineer':
+         var myObj = new Engineer 
+            (response.name, 
+            nextID, 
+            response.email, 
+            response.profile_image, 
+            response.github_user_id, 
+            response.specialty);
+         break;  
+      case 'Intern':
+         var myObj = new Intern 
+            (response.name, 
+            nextID, 
+            response.email, 
+            response.profile_image, 
+            response.github_user_id, 
+            response.school,
+            response.major); 
+         break; 
+      default: console.log ("new object error"); 
+      }
+
+      //console.log(myObj);
+
+      teamList.push(myObj); 
+
+      console.log(teamList);
+
+      // ****************************************
+      // ****************************************
       if (response.continue){
          getNewTeamMember(); 
       }; 
