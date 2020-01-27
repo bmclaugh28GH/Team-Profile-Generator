@@ -42,7 +42,7 @@ function getNewTeamMember () {
       type: "list",
       message: "'Upload' a profile image", 
       name: "profile_image", 
-      choices: ['img1', 'img2', 'img3']
+      choices: ['u', 'ew', 'q', 'h']
       },
       // 
       // ****************************************
@@ -144,6 +144,142 @@ function getNewTeamMember () {
       // ****************************************
       if (response.continue){
          getNewTeamMember(); 
+      }
+      else {
+         console.log ("move on to write the HTML"); 
+
+         var myHtml = `<!DOCTYPE html>
+<html lang="en">
+
+<!-- **************************************** -->
+<!-- **************************************** -->
+<head>
+
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+   <title>Team Profile Generator</title>
+
+   <!--css links-->
+   <link rel="stylesheet" type="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/popper.min.js">
+   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   <style>
+      body{
+         background-color: ivory;
+      }
+      .jumbotron{
+         background-color:aqua;
+      }
+      .row{
+         height:450px;
+      }
+      #teamList, #teamMate{
+         text-align: center;
+         border-color: #003333;
+      }
+      #teamList{
+         background-color: #99ffff;
+         padding:8px; 
+         border-left:solid;
+         border-top:solid;
+         border-bottom:solid;
+      }
+      .btn {
+         width:175px; 
+         height:45px; 
+         margin:3px; 
+         background-color: #008080;
+      }
+      #teamMate{
+         background-color: #e6ffff;
+         padding:8px; 
+         border:solid;
+      }
+      #teamMateDtl{
+         text-align:left;
+         padding:15px; 
+         padding-left:75px; 
+      }
+      .teamMateLineItem{
+         padding-top:15px; 
+      }
+   </style>
+
+</head>
+
+<!-- **************************************** -->
+<!-- **************************************** -->
+<body>
+
+   <div class="container">
+
+      <!--jumbotron-->
+      <div class="jumbotron">
+         <h1 class="text-center">Team Dynamo!</h1>
+      </div> <!--jumbotron-->
+
+      <div class="row">
+         <div class="col-lg-3" id="teamList">
+            <h3>The Team</h3>
+            <hr> 
+            <div id="teamMateButtons">
+               <button type="button" class="btn btn-info" id="1">Brian</button>
+               <button type="button" class="btn btn-info" id="2">Ellen</button>
+               <button type="button" class="btn btn-info" id="3">Eva</button>
+               <button type="button" class="btn btn-info" id="4">Owen</button>
+            </div>
+         </div> 
+
+         <div class="col-lg-9" id="teamMate">
+            <div class="row" id="teamMateHdrRow">
+               <div class="col-lg-3">
+                  <img src="../docs/images/q.jpg" alt="Image not found">
+               </div>
+
+               <div class="col-lg-9" id="teamMateDtl">
+                  <h3 class="teamMateLineItem">Brian</h3>
+                  <h3 class="teamMateLineItem">Email: </h3 class="teamMateLineItem">
+                  <h3 class="teamMateLineItem">Github User ID: </h3 class="teamMateLineItem">
+               </div>
+            </div>
+
+            <hr>
+         </div>
+
+      </div> <!--row-->
+
+   </div> <!--container-->
+
+   <!--**************************************-->
+   <!--js links-->
+   <!--**************************************-->
+   <script src="https://code.jquery.com/jquery.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   <!--<script src="./assets/script/script.js"></script>-->
+   <script>
+
+      $('#teamMateButtons').on("click", function () {
+         event.preventDefault(); 
+         alert (event.target.id); 
+      }); 
+  
+   </script>
+
+<!-- **************************************** -->
+<!-- **************************************** -->
+</body>
+</html>
+
+`;
+
+         fs.writeFile ("index.html", myHtml, function(err){
+            if (err){console.log(err)}
+         }); 
       }; 
 
    }); // getNewTeamMember
