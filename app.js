@@ -19,23 +19,23 @@ function getNewTeamMember () {
       // ****************************************
       {
       type: "input",
-      message: "What is your name?",
+      message: "What is the team member's name?",
       name: "name"
       },
       {
       type: "list",
-      message: "What is your role?", 
+      message: "What is the team member's role?", 
       name: "role", 
       choices: ['Manager', 'Engineer', 'Intern']
       }, 
       {
       type: "input",
-      message: "What is your email address?",
+      message: "What is the team member's email address?",
       name: "email"
       },
       {
       type: "input",
-      message: "What is your github user ID?",
+      message: "What is the team member's github user ID?",
       name: "github_user_id"
       },
       {
@@ -50,7 +50,7 @@ function getNewTeamMember () {
       // ****************************************
       {
       type: "list",
-      message: "What is your specialty", 
+      message: "What is the manager's specialty?", 
       name: "specialty", 
       choices: ['Team Manager', 'QA Manager', 'Development Manager'],
       when: function(answers) {
@@ -63,7 +63,7 @@ function getNewTeamMember () {
       // ****************************************
       {
       type: "list",
-      message: "What is your specialty", 
+      message: "What is the engineer's specialty?", 
       name: "specialty", 
       choices: ['QA', 'Development'],
       when: function(answers) {
@@ -76,7 +76,7 @@ function getNewTeamMember () {
       // ****************************************
       {
       type: "input",
-      message: "What school are you from?", 
+      message: "What school is the intern from?", 
       name: "school", 
       when: function(answers) {
       return answers.role=='Intern'; 
@@ -84,7 +84,7 @@ function getNewTeamMember () {
       }, 
       {
       type: "input",
-      message: "What is your major", 
+      message: "What is the intern's major?", 
       name: "major", 
       when: function(answers) {
       return answers.role=='Intern'; 
@@ -110,7 +110,7 @@ function getNewTeamMember () {
             response.email, 
             response.profile_image, 
             response.github_user_id, 
-            response.role); 
+            response.specialty); 
          break;
       case 'Engineer':
          var myObj = new Engineer 
@@ -138,7 +138,7 @@ function getNewTeamMember () {
 
       teamList.push(myObj); 
 
-      console.log(teamList);
+      //console.log(teamList);
 
       // ****************************************
       // ****************************************
@@ -146,136 +146,173 @@ function getNewTeamMember () {
          getNewTeamMember(); 
       }
       else {
-         console.log ("move on to write the HTML"); 
+
+         //console.log ("move on to write the HTML"); 
+
+         // *************************************
+         // build up the string of my buttons 
+         // *************************************
+         var myButtons =""; 
+
+         // Im doing a hierarchy here, in a very rudimentary way.
+         // team managers 
+         var tempList = teamList.filter(function(obj) {
+            return (obj instanceof Manager) && obj.manager_role === 'Team Manager'; });
+         console.log('Team Manager(s)\n' + tempList);
+         for (i=0;i<tempList.length;i++){
+            myButtons += `\n<button type="button" class="btn btn-info" id="${tempList[i].id}">${tempList[i].name}</button>`
+         } 
+
+         // other managers 
+         var tempList = teamList.filter(function(obj) {
+            return (obj instanceof Manager) && obj.manager_role != 'Team Manager'; });
+         console.log('Other Manager(s)\n' + tempList);
+         for (let i=0;i<tempList.length;i++){
+            myButtons += `\n<button type="button" class="btn btn-info" id="${tempList[i].id}">${tempList[i].name}</button>`
+         } 
+
+         // engineers 
+         var tempList = teamList.filter(function(obj) {
+            return (obj instanceof Engineer);});
+         console.log('Engineer(s)\n' + tempList);
+         for (let i=0;i<tempList.length;i++){
+            myButtons += `\n<button type="button" class="btn btn-info" id="${tempList[i].id}">${tempList[i].name}</button>`
+         } 
+
+         // interns 
+         var tempList = teamList.filter(function(obj) {
+            return (obj instanceof Intern);});
+         console.log('Intern(s)\n' + tempList);
+         for (let i=0;i<tempList.length;i++){
+            myButtons += `\n<button type="button" class="btn btn-info" id="${tempList[i].id}">${tempList[i].name}</button>`
+         } 
+         myButtons += '\n';  
 
          var myHtml = `<!DOCTYPE html>
-<html lang="en">
+            <html lang="en">
 
-<!-- **************************************** -->
-<!-- **************************************** -->
-<head>
+            <!-- **************************************** -->
+            <!-- **************************************** -->
+            <head>
 
-   <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+               <meta charset="UTF-8" />
+               <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+               <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-   <title>Team Profile Generator</title>
+               <title>Team Profile Generator</title>
 
-   <!--css links-->
-   <link rel="stylesheet" type="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/popper.min.js">
-   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+               <!--css links-->
+               <link rel="stylesheet" type="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/popper.min.js">
+               <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-   <style>
-      body{
-         background-color: ivory;
-      }
-      .jumbotron{
-         background-color:aqua;
-      }
-      .row{
-         height:450px;
-      }
-      #teamList, #teamMate{
-         text-align: center;
-         border-color: #003333;
-      }
-      #teamList{
-         background-color: #99ffff;
-         padding:8px; 
-         border-left:solid;
-         border-top:solid;
-         border-bottom:solid;
-      }
-      .btn {
-         width:175px; 
-         height:45px; 
-         margin:3px; 
-         background-color: #008080;
-      }
-      #teamMate{
-         background-color: #e6ffff;
-         padding:8px; 
-         border:solid;
-      }
-      #teamMateDtl{
-         text-align:left;
-         padding:15px; 
-         padding-left:75px; 
-      }
-      .teamMateLineItem{
-         padding-top:15px; 
-      }
-   </style>
+               <style>
+                  body{
+                     background-color: ivory;
+                  }
+                  .jumbotron{
+                     background-color:aqua;
+                  }
+                  .row{
+                     height:450px;
+                  }
+                  #teamList, #teamMate{
+                     text-align: center;
+                     border-color: #003333;
+                  }
+                  #teamList{
+                     background-color: #99ffff;
+                     padding:8px; 
+                     border-left:solid;
+                     border-top:solid;
+                     border-bottom:solid;
+                  }
+                  .btn {
+                     width:175px; 
+                     height:45px; 
+                     margin:3px; 
+                     background-color: #008080;
+                  }
+                  #teamMate{
+                     background-color: #e6ffff;
+                     padding:8px; 
+                     border:solid;
+                  }
+                  #teamMateDtl{
+                     text-align:left;
+                     padding:15px; 
+                     padding-left:75px; 
+                  }
+                  .teamMateLineItem{
+                     padding-top:15px; 
+                  }
+               </style>
 
-</head>
+            </head>
 
-<!-- **************************************** -->
-<!-- **************************************** -->
-<body>
+            <!-- **************************************** -->
+            <!-- **************************************** -->
+            <body>
 
-   <div class="container">
+               <div class="container">
 
-      <!--jumbotron-->
-      <div class="jumbotron">
-         <h1 class="text-center">Team Dynamo!</h1>
-      </div> <!--jumbotron-->
+                  <!--jumbotron-->
+                  <div class="jumbotron">
+                     <h1 class="text-center">Team Dynamo!</h1>
+                  </div> <!--jumbotron-->
 
-      <div class="row">
-         <div class="col-lg-3" id="teamList">
-            <h3>The Team</h3>
-            <hr> 
-            <div id="teamMateButtons">
-               <button type="button" class="btn btn-info" id="1">Brian</button>
-               <button type="button" class="btn btn-info" id="2">Ellen</button>
-               <button type="button" class="btn btn-info" id="3">Eva</button>
-               <button type="button" class="btn btn-info" id="4">Owen</button>
-            </div>
-         </div> 
+                  <div class="row">
+                     <div class="col-lg-3" id="teamList">
+                        <h3>The Team</h3>
+                        <hr> 
+                        <div id="teamMateButtons">
+                        ${myButtons}
+                     </div>
+                  </div> 
 
-         <div class="col-lg-9" id="teamMate">
-            <div class="row" id="teamMateHdrRow">
-               <div class="col-lg-3">
-                  <img src="../docs/images/q.jpg" alt="Image not found">
-               </div>
+                  <div class="col-lg-9" id="teamMate">
+                     <div class="row" id="teamMateHdrRow">
+                        <div class="col-lg-3">
+                           <img src="../docs/images/q.jpg" alt="Image not found">
+                        </div>
 
-               <div class="col-lg-9" id="teamMateDtl">
-                  <h3 class="teamMateLineItem">Brian</h3>
-                  <h3 class="teamMateLineItem">Email: </h3 class="teamMateLineItem">
-                  <h3 class="teamMateLineItem">Github User ID: </h3 class="teamMateLineItem">
-               </div>
-            </div>
+                        <div class="col-lg-9" id="teamMateDtl">
+                           <h3 class="teamMateLineItem">Brian</h3>
+                           <h3 class="teamMateLineItem">Email: </h3 class="teamMateLineItem">
+                           <h3 class="teamMateLineItem">Github User ID: </h3 class="teamMateLineItem">
+                        </div>
+                     </div>
 
-            <hr>
-         </div>
+                     <hr>
+                  </div>
 
-      </div> <!--row-->
+               </div> <!--row-->
 
-   </div> <!--container-->
+            </div> <!--container-->
 
-   <!--**************************************-->
-   <!--js links-->
-   <!--**************************************-->
-   <script src="https://code.jquery.com/jquery.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-   <!--<script src="./assets/script/script.js"></script>-->
-   <script>
+            <!--**************************************-->
+            <!--js links-->
+            <!--**************************************-->
+            <script src="https://code.jquery.com/jquery.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            <!--<script src="./assets/script/script.js"></script>-->
+            <script>
 
-      $('#teamMateButtons').on("click", function () {
-         event.preventDefault(); 
-         alert (event.target.id); 
-      }); 
-  
-   </script>
+               $('#teamMateButtons').on("click", function () {
+                  event.preventDefault(); 
+                  alert (event.target.id); 
+               }); 
+         
+            </script>
 
-<!-- **************************************** -->
-<!-- **************************************** -->
-</body>
-</html>
+         <!-- **************************************** -->
+         <!-- **************************************** -->
+         </body>
+         </html>
 
-`;
+         `;
 
          fs.writeFile ("index.html", myHtml, function(err){
             if (err){console.log(err)}
