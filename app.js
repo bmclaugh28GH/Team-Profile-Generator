@@ -10,6 +10,77 @@ var Engineer = require ("./lib/Engineer");
 nextID = 0; 
 teamList = []; 
 
+// **********************************************
+// **********************************************
+
+function getCardHTML(tempList,i) {
+
+   var str = "";
+   if (tempList[i] instanceof Manager){
+
+      str = 
+      `<div class="col-lg-12">
+      <div class="card">
+         <div class="card-header">
+            <h4 class="card-title">${tempList[i].getName()}</h4>
+            <img src="../docs/images/${tempList[i].getImage()}" alt="Image not found">
+         </div>
+         <div class="card-body">
+            <h5 class="card-text">Role: ${tempList[i].getManagerRole()}</h5>
+            <h5 class="card-text">Email: ${tempList[i].getEmail()}</h5>
+            <h5 class="card-text">Github: ${tempList[i].getGithubUserId()}</h5>
+         </div>
+      </div> 
+      </div>\n`; 
+
+   }
+   else if (tempList[i] instanceof Engineer){
+
+      str = 
+      `<div class="col-lg-12">
+      <div class="card">
+         <div class="card-header">
+            <h4 class="card-title">${tempList[i].getName()}</h4>
+            <img src="../docs/images/${tempList[i].getImage()}" alt="Image not found">
+         </div>
+         <div class="card-body">
+            <h5 class="card-text">Role: Engineer</h5>
+            <h5 class="card-text">Specialty: ${tempList[i].getSpecialty()}</h5>
+            <h5 class="card-text">Email: ${tempList[i].getEmail()}</h5>
+            <h5 class="card-text">Github: ${tempList[i].getGithubUserId()}</h5>
+         </div>   
+      </div> 
+      </div>\n`; 
+
+   }
+   else if (tempList[i] instanceof Intern){
+
+      str = 
+      `<div class="col-lg-12">
+      <div class="card">
+         <div class="card-header">
+            <h4 class="card-title">${tempList[i].getName()}</h4>
+            <img src="../docs/images/${tempList[i].getImage()}" alt="Image not found">
+         </div>
+         <div class="card-body">
+            <h5 class="card-text">Role: Intern</h5>
+            <h5 class="card-text">Email: ${tempList[i].getEmail()}</h5>
+            <h5 class="card-text">Github: ${tempList[i].getGithubUserId()}</h5>
+            <h5 class="card-text">School: ${tempList[i].getSchool()}</h5>
+            <h5 class="card-text">Major: ${tempList[i].getAreaOfInterest()}</h5>
+         </div>   
+      </div> 
+      </div>\n`; 
+
+   }
+
+   return str;
+}; //getCardHTML
+
+// **********************************************
+// getNewTeamMember
+// **********************************************
+
 function getNewTeamMember () {
    inquirer
    .prompt([
@@ -42,7 +113,7 @@ function getNewTeamMember () {
       type: "list",
       message: "'Upload' a profile image", 
       name: "profile_image", 
-      choices: ['u', 'ew', 'q', 'h']
+      choices: ['u.jpg', 'ew.jpg', 'q.jpg', 'h.jpg']
       },
       // 
       // ****************************************
@@ -99,8 +170,6 @@ function getNewTeamMember () {
    ])
    .then(function(response) {
 
-      //console.log(response);
-
       nextID++; 
       switch (response.role){
       case 'Manager':
@@ -134,59 +203,66 @@ function getNewTeamMember () {
       default: console.log ("new object error"); 
       }
 
-      //console.log(myObj);
-
       teamList.push(myObj); 
 
-      //console.log(teamList);
-
       // ****************************************
+      // The user wants to enter another team member. circle back around. 
+      // With recursion, gulp!!
       // ****************************************
       if (response.continue){
          getNewTeamMember(); 
       }
+      // ****************************************
+      // done entering team members. Continue on to follow-on processing 
+      // ****************************************
       else {
 
-         //console.log ("move on to write the HTML"); 
-
          // *************************************
-         // build up the string of my buttons 
+         // build up the strings of my buttons and cards
          // *************************************
          var myButtons =""; 
+         var myCards = ""; 
 
          // Im doing a hierarchy here, in a very rudimentary way.
+
          // team managers 
          var tempList = teamList.filter(function(obj) {
             return (obj instanceof Manager) && obj.manager_role === 'Team Manager'; });
-         console.log('Team Manager(s)\n' + tempList);
          for (i=0;i<tempList.length;i++){
-            myButtons += `\n<button type="button" class="btn btn-info" id="${tempList[i].id}">${tempList[i].name}</button>`
-         } 
+            myButtons += `\n<button type="button" class="btn btn-info" id="${tempList[i].id}">${tempList[i].name}</button>`;
+            myCards += getCardHTML(tempList,i); 
+            //console.log ('TM\n'+myCards); 
+         }
 
          // other managers 
          var tempList = teamList.filter(function(obj) {
             return (obj instanceof Manager) && obj.manager_role != 'Team Manager'; });
-         console.log('Other Manager(s)\n' + tempList);
          for (let i=0;i<tempList.length;i++){
-            myButtons += `\n<button type="button" class="btn btn-info" id="${tempList[i].id}">${tempList[i].name}</button>`
+            myButtons += `\n<button type="button" class="btn btn-info" id="${tempList[i].id}">${tempList[i].name}</button>`;
+            myCards += getCardHTML(tempList,i); 
+            //console.log ('Mgr\n'+myCards); 
          } 
 
          // engineers 
          var tempList = teamList.filter(function(obj) {
             return (obj instanceof Engineer);});
-         console.log('Engineer(s)\n' + tempList);
          for (let i=0;i<tempList.length;i++){
-            myButtons += `\n<button type="button" class="btn btn-info" id="${tempList[i].id}">${tempList[i].name}</button>`
+            myButtons += `\n<button type="button" class="btn btn-info" id="${tempList[i].id}">${tempList[i].name}</button>`;
+            myCards += getCardHTML(tempList,i); 
+            //console.log ('Eng\n'+myCards); 
          } 
 
          // interns 
          var tempList = teamList.filter(function(obj) {
             return (obj instanceof Intern);});
-         console.log('Intern(s)\n' + tempList);
          for (let i=0;i<tempList.length;i++){
             myButtons += `\n<button type="button" class="btn btn-info" id="${tempList[i].id}">${tempList[i].name}</button>`
+            myCards += getCardHTML(tempList,i); 
+            //console.log ('Intern\n'+myCards); 
          } 
+
          myButtons += '\n';  
+         myCards += '\n';  
 
          var myHtml = `<!DOCTYPE html>
             <html lang="en">
@@ -243,6 +319,20 @@ function getNewTeamMember () {
                      padding:15px; 
                      padding-left:75px; 
                   }
+                  .card-title{
+                     display: inline; 
+                     margin-right: 100px 
+                  }
+                  .card-header, .card-body{
+                     background-color: #e6ffff;
+                  }
+                  .card-body{
+                     text-align:left; 
+                  }
+                  img{
+                     height:100px;
+                     width:150px;
+                  }
                   .teamMateLineItem{
                      padding-top:15px; 
                   }
@@ -258,7 +348,7 @@ function getNewTeamMember () {
 
                   <!--jumbotron-->
                   <div class="jumbotron">
-                     <h1 class="text-center">Team Dynamo!</h1>
+                     <h1 class="text-center">Team Ranjan's Minions!</h1>
                   </div> <!--jumbotron-->
 
                   <div class="row">
@@ -272,18 +362,8 @@ function getNewTeamMember () {
 
                   <div class="col-lg-9" id="teamMate">
                      <div class="row" id="teamMateHdrRow">
-                        <div class="col-lg-3">
-                           <img src="../docs/images/q.jpg" alt="Image not found">
-                        </div>
-
-                        <div class="col-lg-9" id="teamMateDtl">
-                           <h3 class="teamMateLineItem">Brian</h3>
-                           <h3 class="teamMateLineItem">Email: </h3 class="teamMateLineItem">
-                           <h3 class="teamMateLineItem">Github User ID: </h3 class="teamMateLineItem">
-                        </div>
+                        ${myCards}
                      </div>
-
-                     <hr>
                   </div>
 
                </div> <!--row-->
@@ -314,16 +394,16 @@ function getNewTeamMember () {
 
          `;
 
-         fs.writeFile ("index.html", myHtml, function(err){
+         fs.writeFile ("./output/index.html", myHtml, function(err){
             if (err){console.log(err)}
          }); 
       }; 
 
-   }); // getNewTeamMember
-}
+   }); 
+}; // getNewTeamMember
 
-//while (addNewTeamMember){
-   getNewTeamMember(); 
-   //addNewTeamMember = false; 
-//}
+// **********************************************
+// **********************************************
+
+getNewTeamMember(); 
 

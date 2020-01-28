@@ -1,0 +1,49 @@
+<html>
+   <head>
+      <title>
+         Title 
+      </title>
+
+      <!--css links-->
+      <link rel="stylesheet" type="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/popper.min.js">
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+      <style>
+         .hClass{
+            display:none; 
+         }
+         .hView{
+            display: block;
+         }
+      
+      </style>
+
+   </head>
+
+   <body>
+
+      <h2 class="hClass hView" id="h1">header 1</h2>
+      <h2 class="hClass" id="h2">header 2</h2>
+      <h2 class="hClass" id="h3">header 3</h2>
+      <h2 class="hClass" id="h4">header 4</h2>
+
+
+      <!--**************************************-->
+      <!--js links-->
+      <!--**************************************-->
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <script>
+      
+         $(".hClass").removeClass("hView");
+         $("#h3").addClass ("hView"); 
+
+      </script>
+
+   </body>
+
+
+</html>

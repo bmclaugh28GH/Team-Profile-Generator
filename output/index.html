@@ -9,7 +9,7 @@
                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-               <title>MOCKUP Team Profile Generator</title>
+               <title>Team Profile Generator</title>
 
                <!--css links-->
                <link rel="stylesheet" type="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/popper.min.js">
@@ -53,24 +53,27 @@
                      padding:15px; 
                      padding-left:75px; 
                   }
-                  .teamMateLineItem{
-                     padding-top:15px; 
+                  .card {
+                     /*adding-top:6px;*/ 
+                     border-top:2px;
+                     border-style:solid; 
                   }
-                  .card-header{
+                  .card-title{
+                     display: inline; 
+                     margin-right: 100px 
+                  }
+                  .card-header, .card-body{
                      background-color: #e6ffff;
                   }
                   .card-body{
-                     background-color: #e6ffff;
-                  }
-                  .card-footer{
-                     background-color: #e6ffff;
-                  }
-                  .card-text{
-                     text-align:left;
+                     text-align:left; 
                   }
                   img{
                      height:100px;
-                     width: 125px; 
+                     width:100px;
+                  }
+                  .teamMateLineItem{
+                     padding-top:15px; 
                   }
                </style>
 
@@ -84,93 +87,74 @@
 
                   <!--jumbotron-->
                   <div class="jumbotron">
-                     <h1 class="text-center">Team Dynamo!</h1>
+                     <h1 class="text-center">Team Ranjan's Minions!</h1>
                   </div> <!--jumbotron-->
 
                   <div class="row">
-
-                     <div class="col-lg-2" id="teamList">
+                     <div class="col-lg-3" id="teamList">
                         <h3>The Team</h3>
                         <hr> 
                         <div id="teamMateButtons">
                         
+<button type="button" class="btn btn-info" id="3">brian</button>
+<button type="button" class="btn btn-info" id="2">ellen</button>
 <button type="button" class="btn btn-info" id="1">mark</button>
-<button type="button" class="btn btn-info" id="2">brian</button>
 
-                        </div>
                      </div>
+                  </div> 
 
-                     <div class="col-lg-10" id="teamMate">
-
-                        <div class="row" class="teamMateHdrRow">
-
-
-
-
-
-                           <div class="col-lg-12">
-<div class="card">
+                  <div class="col-lg-9" id="teamMate">
+                     <div class="row" id="teamMateHdrRow">
+                        <div class="col-lg-12">
+      <div class="card">
          <div class="card-header">
-            <h4 class="card-title">mark</h4>
-            <img src="../docs/images/h.jpg" alt="Image not found">
+            <h4 class="card-title">brian</h4>
+            <img src="../docs/images/q.jpg" alt="Image not found">
          </div>
          <div class="card-body">
             <h5 class="card-text">Role: Team Manager</h5>
-            <h5 class="card-text">Email: mark@bc.com</h5>
-            <h5 class="card-text">Github: gh</h5>
+            <h5 class="card-text">Email: brian@bc.com</h5>
+            <h5 class="card-text">Github: briangh</h5>
          </div>
+      </div> 
       </div>
-                     </div>
-                           <div class="col-lg-12">
-<div class="card">
+<div class="col-lg-12">
+      <div class="card">
          <div class="card-header">
-            <h4 class="card-title">mark</h4>
+            <h4 class="card-title">ellen</h4>
             <img src="../docs/images/h.jpg" alt="Image not found">
          </div>
          <div class="card-body">
-            <h5 class="card-text">Role: Team Manager</h5>
-            <h5 class="card-text">Email: mark@bc.com</h5>
-            <h5 class="card-text">Github: gh</h5>
-         </div>
+            <h5 class="card-text">Role: Engineer</h5>
+            <h5 class="card-text">Specialty: QA</h5>
+            <h5 class="card-text">Email: ellen@bc.com</h5>
+            <h5 class="card-text">Github: ellengh</h5>
+         </div>   
+      </div> 
       </div>
-                     </div>
-                           <div class="col-lg-12">
-<div class="card">
+<div class="col-lg-12">
+      <div class="card">
          <div class="card-header">
             <h4 class="card-title">mark</h4>
-            <img src="../docs/images/h.jpg" alt="Image not found">
+            <img src="../docs/images/u.jpg" alt="Image not found">
          </div>
          <div class="card-body">
-            <h5 class="card-text">Role: Team Manager</h5>
+            <h5 class="card-text">Role: Intern</h5>
             <h5 class="card-text">Email: mark@bc.com</h5>
-            <h5 class="card-text">Github: gh</h5>
-         </div>
+            <h5 class="card-text">Github: markgh</h5>
+            <h5 class="card-text">School: UM</h5>
+            <h5 class="card-text">Major: Drinking beer</h5>
+         </div>   
+      </div> 
       </div>
+
+
                      </div>
-                           <div class="col-lg-12">
-<div class="card">
-         <div class="card-header">
-            <h4 class="card-title">mark</h4>
-            <img src="../docs/images/h.jpg" alt="Image not found">
-         </div>
-         <div class="card-body">
-            <h5 class="card-text">Role: Team Manager</h5>
-            <h5 class="card-text">Email: mark@bc.com</h5>
-            <h5 class="card-text">Github: gh</h5>
-         </div>
-      </div>
-                     </div>
+                  </div>
 
+               </div> <!--row-->
 
-
-
-
-
-
-
-
-                  </div> <!--row-->
-               </div> <!--container-->
+            </div> <!--container-->
 
             <!--**************************************-->
             <!--js links-->
@@ -179,14 +163,12 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            <!--<script src="./assets/script/script.js"></script>-->
             <script>
 
                $('#teamMateButtons').on("click", function () {
                   event.preventDefault(); 
                   alert (event.target.id); 
-
-
-
                }); 
          
             </script>

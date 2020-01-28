@@ -9,7 +9,6 @@ describe ("Engineer", () => {
       const email = 'brian@fakeEmail.com'; 
       const image = 'brian.jpg'; 
       const github_user_id = 'bmclaugh28gh';
-      const school = 'Rutgers';
       const specialty = 'QA';   
       const myObj = new Engineer (name, id, email, image, github_user_id, specialty); 
       

@@ -53,6 +53,20 @@
                      padding:15px; 
                      padding-left:75px; 
                   }
+                  .card-title{
+                     display: inline; 
+                     margin-right: 100px 
+                  }
+                  .card-header, .card-body{
+                     background-color: #e6ffff;
+                  }
+                  .card-body{
+                     text-align:left; 
+                  }
+                  img{
+                     height:100px;
+                     width:100px;
+                  }
                   .teamMateLineItem{
                      padding-top:15px; 
                   }
@@ -68,7 +82,7 @@
 
                   <!--jumbotron-->
                   <div class="jumbotron">
-                     <h1 class="text-center">Team Dynamo!</h1>
+                     <h1 class="text-center">Team Ranjan's Minions!</h1>
                   </div> <!--jumbotron-->
 
                   <div class="row">
@@ -77,56 +91,85 @@
                         <hr> 
                         <div id="teamMateButtons">
                         
-               <button type="button" class="btn btn-info" id="1">brian</button>
+<button type="button" class="btn btn-info" id="1">mark</button>
 
-               <button type="button" class="btn btn-info" id="2">mark</button>
+                     </div>
+                  </div> 
 
-               <button type="button" class="btn btn-info" id="3">ellen</button>
+                  <div class="col-lg-9" id="teamMate">
+                     <div class="row" id="teamMateHdrRow">
 
-               <button type="button" class="btn btn-info" id="4">eva</button>
+                        <!--<div class="col-lg-3">
+                           <img src="../docs/images/q.jpg" alt="Image not found">
+                        </div>
+                        <div class="col-lg-9" id="teamMateDtl">
+                           <h3 class="teamMateLineItem">Brian</h3>
+                           <h3 class="teamMateLineItem">Email: </h3 class="teamMateLineItem">
+                           <h3 class="teamMateLineItem">Github User ID: </h3 class="teamMateLineItem">
+                        -->
 
-            </div>
-         </div> 
+                           <div class="col-lg-12">
+                              <div class="card">
+                                 <div class="card-header">
+                                    <h4 class="card-title">Brian</h4>
+                                    <img src="./docs/images/q.jpg" alt="Image not found">
+                                 </div>
+                                 <div class="card-body">
+                                    <h5 class="card-text">Role: Development Manager</h5>
+                                    <h5 class="card-text">Email: brian@fakeEmail.com</h5>
+                                    <h5 class="card-text">Github: bmclaugh28gh</h5>
+                                 </div>   
+                              </div>
+                           </div> <!--card-->
 
-         <div class="col-lg-9" id="teamMate">
-            <div class="row" id="teamMateHdrRow">
-               <div class="col-lg-3">
-                  <img src="../docs/images/q.jpg" alt="Image not found">
-               </div>
+                           <div class="col-lg-12">
+                              <div class="card">
+                                 <div class="card-header">
+                                    <h4 class="card-title">Brian 2</h4>
+                                    <img src="./docs/images/q.jpg" alt="Image not found">
+                                 </div>
+                                 <div class="card-body">
+                                    <h5 class="card-text">Role: Development Manager</h5>
+                                    <h5 class="card-text">Email: brian@fakeEmail.com</h5>
+                                    <h5 class="card-text">Github: bmclaugh28gh</h5>
+                                 </div>   
+                              </div>
+                           </div> <!--card-->
 
-               <div class="col-lg-9" id="teamMateDtl">
-                  <h3 class="teamMateLineItem">Brian</h3>
-                  <h3 class="teamMateLineItem">Email: </h3 class="teamMateLineItem">
-                  <h3 class="teamMateLineItem">Github User ID: </h3 class="teamMateLineItem">
-               </div>
-            </div>
 
-            <hr>
-         </div>
 
-      </div> <!--row-->
 
-   </div> <!--container-->
 
-   <!--**************************************-->
-   <!--js links-->
-   <!--**************************************-->
-   <script src="https://code.jquery.com/jquery.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-   <!--<script src="./assets/script/script.js"></script>-->
-   <script>
+                        </div>
+                     </div>
 
-      $('#teamMateButtons').on("click", function () {
-         event.preventDefault(); 
-         alert (event.target.id); 
-      }); 
-  
-   </script>
+                     <hr>
+                  </div>
 
-<!-- **************************************** -->
-<!-- **************************************** -->
-</body>
-</html>
+               </div> <!--row-->
 
+            </div> <!--container-->
+
+            <!--**************************************-->
+            <!--js links-->
+            <!--**************************************-->
+            <script src="https://code.jquery.com/jquery.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            <!--<script src="./assets/script/script.js"></script>-->
+            <script>
+
+               $('#teamMateButtons').on("click", function () {
+                  event.preventDefault(); 
+                  alert (event.target.id); 
+               }); 
+         
+            </script>
+
+         <!-- **************************************** -->
+         <!-- **************************************** -->
+         </body>
+         </html>
+
+         
