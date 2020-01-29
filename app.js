@@ -20,7 +20,7 @@ function getCardHTML(tempList,i) {
 
       str = 
       `<div class="col-lg-12">
-      <div class="card">
+      <div class="card card${tempList[i].getID()}">
          <div class="card-header">
             <h4 class="card-title">${tempList[i].getName()}</h4>
             <img src="../docs/images/${tempList[i].getImage()}" alt="Image not found">
@@ -38,7 +38,7 @@ function getCardHTML(tempList,i) {
 
       str = 
       `<div class="col-lg-12">
-      <div class="card">
+      <div class="card card${tempList[i].getID()}">
          <div class="card-header">
             <h4 class="card-title">${tempList[i].getName()}</h4>
             <img src="../docs/images/${tempList[i].getImage()}" alt="Image not found">
@@ -57,7 +57,7 @@ function getCardHTML(tempList,i) {
 
       str = 
       `<div class="col-lg-12">
-      <div class="card">
+      <div class="card card${tempList[i].getID()}">
          <div class="card-header">
             <h4 class="card-title">${tempList[i].getName()}</h4>
             <img src="../docs/images/${tempList[i].getImage()}" alt="Image not found">
@@ -319,6 +319,12 @@ function getNewTeamMember () {
                      padding:15px; 
                      padding-left:75px; 
                   }
+                  .card{
+                     display:none; 
+                  }
+                  .viewThisCard{
+                     display:block; 
+                  }
                   .card-title{
                      display: inline; 
                      margin-right: 100px 
@@ -356,13 +362,17 @@ function getNewTeamMember () {
                         <h3>The Team</h3>
                         <hr> 
                         <div id="teamMateButtons">
+
                         ${myButtons}
+
                      </div>
                   </div> 
 
                   <div class="col-lg-9" id="teamMate">
                      <div class="row" id="teamMateHdrRow">
+
                         ${myCards}
+
                      </div>
                   </div>
 
@@ -382,7 +392,9 @@ function getNewTeamMember () {
 
                $('#teamMateButtons').on("click", function () {
                   event.preventDefault(); 
-                  alert (event.target.id); 
+                  //alert ("card"+event.target.id); 
+                  $(".card").removeClass("viewThisCard");
+                  $(".card"+event.target.id).addClass("viewThisCard");
                }); 
          
             </script>
