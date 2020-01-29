@@ -53,7 +53,7 @@
                      padding:15px; 
                      padding-left:75px; 
                   }
-                  .card{
+                  .cardCol{
                      display:none; 
                   }
                   .viewThisCard{
@@ -71,7 +71,7 @@
                   }
                   img{
                      height:100px;
-                     width:150px;
+                     width:100px;
                   }
                   .teamMateLineItem{
                      padding-top:15px; 
@@ -98,10 +98,10 @@
                         <div id="teamMateButtons">
 
                         
-<button type="button" class="btn btn-info" id="1">Brian</button>
-<button type="button" class="btn btn-info" id="2">Ellen</button>
-<button type="button" class="btn btn-info" id="3">Eva</button>
+<button type="button" class="btn btn-info" id="1">Ellen</button>
+<button type="button" class="btn btn-info" id="2">Eva</button>
 <button type="button" class="btn btn-info" id="4">Owen</button>
+<button type="button" class="btn btn-info" id="3">Amanda</button>
 
 
                      </div>
@@ -110,60 +110,59 @@
                   <div class="col-lg-9" id="teamMate">
                      <div class="row" id="teamMateHdrRow">
 
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 cardCol cardCol1">
       <div class="card card1">
          <div class="card-header">
-            <h4 class="card-title">Brian</h4>
+            <h4 class="card-title">Ellen</h4>
             <img src="../docs/images/q.jpg" alt="Image not found">
          </div>
          <div class="card-body">
             <h5 class="card-text">Role: Team Manager</h5>
-            <h5 class="card-text">Email: brian@bc.com</h5>
-            <h5 class="card-text">Github: briangh</h5>
-         </div>
-      </div> 
-      </div>
-<div class="col-lg-12">
-      <div class="card card2">
-         <div class="card-header">
-            <h4 class="card-title">Ellen</h4>
-            <img src="../docs/images/h.jpg" alt="Image not found">
-         </div>
-         <div class="card-body">
-            <h5 class="card-text">Role: Engineer</h5>
-            <h5 class="card-text">Specialty: Development</h5>
             <h5 class="card-text">Email: ellen@bc.com</h5>
             <h5 class="card-text">Github: ellengh</h5>
-         </div>   
+         </div>
       </div> 
       </div>
-<div class="col-lg-12">
-      <div class="card card3">
+<div class="col-lg-12 cardCol cardCol2">
+      <div class="card card2">
          <div class="card-header">
             <h4 class="card-title">Eva</h4>
             <img src="../docs/images/u.jpg" alt="Image not found">
          </div>
          <div class="card-body">
-            <h5 class="card-text">Role: Intern</h5>
+            <h5 class="card-text">Role: Engineer</h5>
+            <h5 class="card-text">Specialty: Development</h5>
             <h5 class="card-text">Email: eva@bc.com</h5>
             <h5 class="card-text">Github: evagh</h5>
-            <h5 class="card-text">School: UMBC</h5>
-            <h5 class="card-text">Major: Psychology</h5>
          </div>   
       </div> 
       </div>
-<div class="col-lg-12">
+<div class="col-lg-12 cardCol cardCol4">
       <div class="card card4">
          <div class="card-header">
             <h4 class="card-title">Owen</h4>
+            <img src="../docs/images/h.jpg" alt="Image not found">
+         </div>
+         <div class="card-body">
+            <h5 class="card-text">Role: Engineer</h5>
+            <h5 class="card-text">Specialty: Development</h5>
+            <h5 class="card-text">Email: owen@bc.com</h5>
+            <h5 class="card-text">Github: owengh</h5>
+         </div>   
+      </div> 
+      </div>
+<div class="col-lg-12 cardCol cardCol3">
+      <div class="card card3">
+         <div class="card-header">
+            <h4 class="card-title">Amanda</h4>
             <img src="../docs/images/ew.jpg" alt="Image not found">
          </div>
          <div class="card-body">
             <h5 class="card-text">Role: Intern</h5>
-            <h5 class="card-text">Email: owen@bc.com</h5>
-            <h5 class="card-text">Github: owengh</h5>
-            <h5 class="card-text">School: NHS</h5>
-            <h5 class="card-text">Major: Tennis</h5>
+            <h5 class="card-text">Email: amanda@bc.com</h5>
+            <h5 class="card-text">Github: amandagh</h5>
+            <h5 class="card-text">School: MoCo</h5>
+            <h5 class="card-text">Major: Performance Arts</h5>
          </div>   
       </div> 
       </div>
@@ -190,8 +189,8 @@
                $('#teamMateButtons').on("click", function () {
                   event.preventDefault(); 
                   //alert ("card"+event.target.id); 
-                  $(".card").removeClass("viewThisCard");
-                  $(".card"+event.target.id).addClass("viewThisCard");
+                  $(".cardCol").removeClass("viewThisCard");
+                  $(".cardCol"+event.target.id).addClass("viewThisCard");
                }); 
          
             </script>

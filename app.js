@@ -19,7 +19,7 @@ function getCardHTML(tempList,i) {
    if (tempList[i] instanceof Manager){
 
       str = 
-      `<div class="col-lg-12">
+      `<div class="col-lg-12 cardCol cardCol${tempList[i].getID()}">
       <div class="card card${tempList[i].getID()}">
          <div class="card-header">
             <h4 class="card-title">${tempList[i].getName()}</h4>
@@ -37,7 +37,7 @@ function getCardHTML(tempList,i) {
    else if (tempList[i] instanceof Engineer){
 
       str = 
-      `<div class="col-lg-12">
+      `<div class="col-lg-12 cardCol cardCol${tempList[i].getID()}">
       <div class="card card${tempList[i].getID()}">
          <div class="card-header">
             <h4 class="card-title">${tempList[i].getName()}</h4>
@@ -56,7 +56,7 @@ function getCardHTML(tempList,i) {
    else if (tempList[i] instanceof Intern){
 
       str = 
-      `<div class="col-lg-12">
+      `<div class="col-lg-12 cardCol cardCol${tempList[i].getID()}">
       <div class="card card${tempList[i].getID()}">
          <div class="card-header">
             <h4 class="card-title">${tempList[i].getName()}</h4>
@@ -319,7 +319,7 @@ function getNewTeamMember () {
                      padding:15px; 
                      padding-left:75px; 
                   }
-                  .card{
+                  .cardCol{
                      display:none; 
                   }
                   .viewThisCard{
@@ -337,7 +337,7 @@ function getNewTeamMember () {
                   }
                   img{
                      height:100px;
-                     width:150px;
+                     width:100px;
                   }
                   .teamMateLineItem{
                      padding-top:15px; 
@@ -393,8 +393,8 @@ function getNewTeamMember () {
                $('#teamMateButtons').on("click", function () {
                   event.preventDefault(); 
                   //alert ("card"+event.target.id); 
-                  $(".card").removeClass("viewThisCard");
-                  $(".card"+event.target.id).addClass("viewThisCard");
+                  $(".cardCol").removeClass("viewThisCard");
+                  $(".cardCol"+event.target.id).addClass("viewThisCard");
                }); 
          
             </script>
